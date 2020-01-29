@@ -28,7 +28,9 @@ public class PostController {
 //    }
 
     @GetMapping("addpost")
-    public String addPost () {
+    public String addPost (Principal p, Model m) {
+        m.addAttribute("username", p.getName());
+        m.addAttribute("user", repo.findByUsername(p.getName()));
         return "add";
     }
 
@@ -36,6 +38,6 @@ public class PostController {
     public RedirectView submitNewPost (String time, String body, Principal p) {
         Post newPost = new Post(time, body, repo.findByUsername(p.getName()));
         postRepo.save(newPost);
-        return new RedirectView("/");
+        return new RedirectView("/myprofile");
     }
 }

@@ -19,6 +19,7 @@ public class ApplicationUser implements UserDetails {
     String password;
     String firstName;
     String lastName;
+    String img;
     String dob;
     String bio;
 
@@ -33,6 +34,7 @@ public class ApplicationUser implements UserDetails {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.img = "https://placeimg.com/640/360/animals";
         this.dob = dob;
     }
 
@@ -63,6 +65,10 @@ public class ApplicationUser implements UserDetails {
 
     public List<Post> getPosts() {
         return posts;
+    }
+
+    public String getImg() {
+        return img;
     }
 
     @Override

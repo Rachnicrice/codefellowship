@@ -5,6 +5,7 @@
 
 <nav th:fragment="nav">
     <span th:if="${user}">
+            <a href="/myprofile">My Profile</a>
             <span>Welcome, <span th:text="${user.username}"></span>!</span>
             <a href="/logout">Log out</a>
         </span>

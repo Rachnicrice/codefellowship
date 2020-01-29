@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 public class HomeController {
@@ -27,8 +28,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String getHome(Principal p, Model m){
-        m.addAttribute("username", p.getName());
-        m.addAttribute("user", repo.findByUsername(p.getName()));
+       if (p != null) {
+           m.addAttribute("username", p.getName());
+           m.addAttribute("user", repo.findByUsername(p.getName()));
+        }
         return "index";
     }
 
@@ -42,9 +45,16 @@ public class HomeController {
         return "signup";
     }
 
+    @GetMapping("/myprofile")
+    public String userProfile (Principal p, Model m) {
+        m.addAttribute("username", p.getName());
+        m.addAttribute("user", repo.findByUsername(p.getName()));
+        return "profile";
+    }
+
     @PostMapping("/signup")
-    public RedirectView newUserSignup (String username, String password, String firstName) {
-        ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), firstName);
+    public RedirectView newUserSignup (String username, String password, String firstName, String lastName, String dob) {
+        ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), firstName, lastName, dob);
         repo.save(newUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -19,14 +20,28 @@ public class ApplicationUser implements UserDetails {
     String username;
     String password;
     String firstName;
-
+    String lastName;
+    String dob;
+    String bio;
     //constructor functions
-    public ApplicationUser () {}
 
-    public ApplicationUser (String username, String password, String firstName) {
+    public ApplicationUser () {}
+    public ApplicationUser (String username, String password, String firstName, String lastName, String dob) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+    }
+
+
+    //instance methods
+    public Long getId() {
+        return id;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     @Override

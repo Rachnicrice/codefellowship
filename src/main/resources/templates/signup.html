@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="">
   <head>
     <title>Code Fellowship</title>
   </head>
 
   <body>
     <h1>Sign Up for Code Fellowship!</h1>
+    <nav th:replace="fragments/nav :: nav"></nav>
 
     <form action="/signup" method="POST">
       <label>Username <input name="username"/> </label>
       <label>Password <input type="password" name="password" /></label>
       <label>First Name <input name="firstName" /></label>
+      <label>Last Name <input name="lastName" /></label>
+      <label>Date of Birth <input type="date" name="dob" /></label>
       <input type="submit" />
     </form>    
   </body>

@@ -18,15 +18,15 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
-    String name;
+    String firstName;
 
     //constructor functions
     public ApplicationUser () {}
 
-    public ApplicationUser (String username, String password, String name) {
+    public ApplicationUser (String username, String password, String firstName) {
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.firstName = firstName;
     }
 
     @Override

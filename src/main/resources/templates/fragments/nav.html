@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<nav th:fragment="nav">
+    <span th:if="${user}">
+            <span>Welcome, <span th:text="${user.username}"></span>!</span>
+            <a href="/logout">Log out</a>
+        </span>
+    <span th:unless="${user}">
+            <a href="/login">Log in</a>
+            <a href="/signup">Sign up</a>
+        </span>
+
+</nav>
+
+</body>
+</html>

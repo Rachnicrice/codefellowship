@@ -15,6 +15,12 @@
     <h4 th:text="${user.firstName} + ' ' + ${user.lastName}"></h4>
     <p th:text="${user.dob}"></p>
     <p th:text="${user.bio}"></p>
+
+    <article th:each="post : ${user?.posts}">
+      <p th:text="${post.time}">Time Posted</p>
+      <p th:text="${post.body}">Post Body</p>
+    </article>
+
   </main>
 </body>
 </html>

@@ -13,6 +13,7 @@
 
   <main>
     <h4 th:text="${user.firstName} + ' ' + ${user.lastName}"></h4>
+    <img th:src="${user.img}" alt="profile photo">
     <p th:text="${user.dob}"></p>
     <p th:text="${user.bio}"></p>
 

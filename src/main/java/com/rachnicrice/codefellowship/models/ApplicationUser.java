@@ -24,8 +24,8 @@ public class ApplicationUser implements UserDetails {
     String dob;
     String bio;
     //constructor functions
-
     public ApplicationUser () {}
+
     public ApplicationUser (String username, String password, String firstName, String lastName, String dob) {
         this.username = username;
         this.password = password;
@@ -34,8 +34,23 @@ public class ApplicationUser implements UserDetails {
         this.dob = dob;
     }
 
-
     //instance methods
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
     public Long getId() {
         return id;
     }

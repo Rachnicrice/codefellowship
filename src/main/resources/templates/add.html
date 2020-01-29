@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="">
+  <head>
+    <title>Code Fellowship</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Make a New Post</h1>
+      <nav th:replace="fragments/nav :: nav"></nav>
+    </header>
+
+    <main>
+      <form action="/addpost" method="POST">
+        <label>Time<input type="time" name="time"></label>
+        <label>What's on your mind? <textarea name="body" cols="30" rows="10"></textarea></label>
+        <input type="submit" value="post">
+      </form>
+    </main>
+  </body>
+</html>

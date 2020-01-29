@@ -3,11 +3,10 @@ package com.rachnicrice.codefellowship.models;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -18,15 +17,52 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
-    String name;
+    String firstName;
+    String lastName;
+    String dob;
+    String bio;
+
+    @OneToMany(mappedBy = "user")
+    List<Post> posts;
 
     //constructor functions
     public ApplicationUser () {}
 
-    public ApplicationUser (String username, String password, String name) {
+    public ApplicationUser (String username, String password, String firstName, String lastName, String dob) {
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+    }
+
+    //instance methods
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 
     @Override

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Code Fellowship</title>
+</head>
+
+<body>
+  <header>
+    <h1 th:text="${user.username}">Username</h1>
+    <nav th:replace="fragments/nav :: nav"></nav>
+  </header>
+
+  <main>
+    <h4 th:text="${user.firstName} + ' ' + ${user.lastName}"></h4>
+    <p th:text="${user.dob}"></p>
+    <p th:text="${user.bio}"></p>
+
+    <article th:each="post : ${user?.posts}">
+      <p th:text="${post.time}">Time Posted</p>
+      <p th:text="${post.body}">Post Body</p>
+    </article>
+
+  </main>
+</body>
+</html>

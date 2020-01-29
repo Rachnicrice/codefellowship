@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="">
   <head>
     <title>Code Fellowship</title>
   </head>
 
   <body>
     <h1>Log In to Code Fellowship!</h1>
+    <nav th:replace="fragments/nav :: nav"></nav>
 
     <form action="/login" method="POST">
       <label>Username<input name="username"/></label>

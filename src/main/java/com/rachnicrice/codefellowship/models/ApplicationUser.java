@@ -26,6 +26,18 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "user")
     List<Post> posts;
 
+    @ManyToMany
+    @JoinTable(
+            name = "Followers",
+            joinColumns = { @JoinColumn(name = "follower_id") },
+            inverseJoinColumns = {@JoinColumn(name = "userBeingFollowed_id")}
+    )
+    List<ApplicationUser> usersIAmFollowing;
+
+    @ManyToMany (mappedBy = "usersIAmFollowing")
+    List<ApplicationUser> usersFollowingMe;
+
+
     //constructor functions
     public ApplicationUser () {}
 
@@ -40,23 +52,23 @@ public class ApplicationUser implements UserDetails {
 
     //instance methods
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public String getDob() {
-        return dob;
+        return this.dob;
     }
 
     public String getBio() {
-        return bio;
+        return this.bio;
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setBio(String bio) {
@@ -64,11 +76,19 @@ public class ApplicationUser implements UserDetails {
     }
 
     public List<Post> getPosts() {
-        return posts;
+        return this.posts;
     }
 
     public String getImg() {
-        return img;
+        return this.img;
+    }
+
+    public List<ApplicationUser> getUsersIAmFollowing() {
+        return this.usersIAmFollowing;
+    }
+
+    public List<ApplicationUser> getUsersFollowingMe() {
+        return this.usersFollowingMe;
     }
 
     @Override

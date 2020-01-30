@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Fellowship</title>
+</head>
+<body>
+    <h1>Code Fellowship Members</h1>
+    <nav th:replace="fragments/nav :: nav"></nav>
+
+    <div th:each="user : ${users}">
+        <p th:text="${user.username}"></p>
+        <a class="profile-btn" th:href="'/users/' + ${user.username}">View Profile</a>
+        <form th:action="'/users/' + ${user.id} + '/follow'" method="POST">
+            <input type="submit" value="Follow">
+        </form>
+    </div>
+</body>
+</html>

@@ -8,6 +8,8 @@
     <h1>Sign Up for Code Fellowship!</h1>
     <nav th:replace="fragments/nav :: nav"></nav>
 
+    <p class="error" th:if="${param.taken}">Sorry, that username was already taken. Please try a new username.</p>
+
     <form action="/signup" method="POST">
       <label>Username <input name="username"/> </label>
       <label>Password <input type="password" name="password" /></label>

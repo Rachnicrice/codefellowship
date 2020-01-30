@@ -10,12 +10,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -52,13 +54,47 @@ public class HomeController {
         return "profile";
     }
 
+    @GetMapping("/users")
+    public String seeAllUsers (Principal p, Model m) {
+        List<ApplicationUser> users = repo.findAll();
+        m.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/users/{username}")
+    public String viewUserProfile (@PathVariable String username, Model m, Principal p) {
+        ApplicationUser currentUser = repo.findByUsername(p.getName());
+        ApplicationUser viewingProfile = repo.findByUsername(username);
+        m.addAttribute("username", username);
+        m.addAttribute("user", viewingProfile);
+        if (currentUser != viewingProfile) {
+            m.addAttribute("follow", !currentUser.getUsersIAmFollowing().contains(viewingProfile));
+        }
+        return "profile";
+    }
+
     @PostMapping("/signup")
     public RedirectView newUserSignup (String username, String password, String firstName, String lastName, String dob) {
-        ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), firstName, lastName, dob);
-        repo.save(newUser);
+        if (repo.findByUsername(username) == null) {
+            ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), firstName, lastName, dob);
+            repo.save(newUser);
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new RedirectView("/");
+            Authentication authentication = new UsernamePasswordAuthenticationToken(newUser, null, new ArrayList<>());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return new RedirectView("/myprofile");
+        } else {
+            return new RedirectView("/signup?taken=true");
+        }
+    }
+
+    @PostMapping("/users/{id}/follow")
+    public RedirectView followNewUser (@PathVariable Long id, Principal p) {
+        ApplicationUser currentUser = repo.findByUsername(p.getName());
+        ApplicationUser userToBeFollowed = repo.getOne(id);
+
+        currentUser.getUsersIAmFollowing().add(userToBeFollowed);
+        repo.save(currentUser);
+
+        return new RedirectView("/feed");
     }
 }

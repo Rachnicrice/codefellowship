@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -34,9 +35,16 @@ public class PostController {
         return "add";
     }
 
+    @GetMapping("/feed")
+    public String viewFeed (Principal p, Model m) {
+        m.addAttribute("username", p.getName());
+        m.addAttribute("user", repo.findByUsername(p.getName()));
+        return "feed";
+    }
+
     @PostMapping("/addpost")
-    public RedirectView submitNewPost (String time, String body, Principal p) {
-        Post newPost = new Post(time, body, repo.findByUsername(p.getName()));
+    public RedirectView submitNewPost (String body, String time, Principal p) {
+        Post newPost = new Post(body, time, repo.findByUsername(p.getName()));
         postRepo.save(newPost);
         return new RedirectView("/myprofile");
     }

@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-  <title>Code Fellowship</title>
+  <head th:replace="fragments/head :: head">
 </head>
 
 <body>
-  <header>
-    <h1 th:text="${user.username}">Username</h1>
-    <nav th:replace="fragments/nav :: nav"></nav>
+  <header th:replace="fragments/header :: header">
+
   </header>
+
+    <h2 th:text="${user.username}">Username</h2>
 
   <main>
     <h4 th:text="${user.firstName} + ' ' + ${user.lastName}"></h4>

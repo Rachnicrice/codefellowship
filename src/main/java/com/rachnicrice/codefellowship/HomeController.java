@@ -16,7 +16,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -57,6 +56,8 @@ public class HomeController {
     @GetMapping("/users")
     public String seeAllUsers (Principal p, Model m) {
         List<ApplicationUser> users = repo.findAll();
+        m.addAttribute("username", p.getName());
+        m.addAttribute("user", repo.findByUsername(p.getName()));
         m.addAttribute("users", users);
         return "users";
     }

@@ -1,3 +1,7 @@
 * {
-   
+   box-sizing: border-box;
+}
+
+* {
+    border: blue dotted 4px;
 }

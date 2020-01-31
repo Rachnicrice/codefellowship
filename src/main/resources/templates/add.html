@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="">
-  <head>
-    <title>Code Fellowship</title>
+  <head th:replace="fragments/head :: head">
   </head>
 
   <body>
-    <header>
-      <h1>Make a New Post</h1>
-      <nav th:replace="fragments/nav :: nav"></nav>
+    <header th:replace="fragments/header :: header">
     </header>
+
+    <h2>Make a New Post</h2>
 
     <main>
       <form action="/addpost" method="POST">

@@ -3,21 +3,25 @@
 
 <body>
 
-<nav th:fragment="nav">
+<header th:fragment="header">
+    <h1>Code Fellowship</h1>
+
+    <nav>
     <span th:if="${user}">
             <a href="/myprofile">My Profile</a>
-            <span>Welcome, <span th:text="${user.username}"></span>!</span>
+            <span th:text="'Welcome, ' + ${user.username} + '!'"></span>
             <a href="/feed">My Feed</a>
             <a href="/addpost">Add Post</a>
             <a href="/users">Find Users</a>
             <a href="/logout">Log out</a>
         </span>
-    <span th:unless="${user}">
+
+        <span th:unless="${user}">
             <a href="/login">Log in</a>
             <a href="/signup">Sign up</a>
-        </span>
-
-</nav>
+    </span>
+    </nav>
+</header>
 
 </body>
 </html>

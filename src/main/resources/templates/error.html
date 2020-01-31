@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="">
 <head>
-    <title>Code Fellowship</title>
+    <head th:replace="fragments/head :: head">
 </head>
 
 <body>
-<header>
-    <h1>EVERYTHING IS ON FIRE! THE WORLD IS ENDING!! RUN FOR YOUR LIFE!</h1>
-    <h3>Jk, it's probably fine. But something went wrong.</h3>
-
-    <nav th:replace="fragments/nav :: nav"></nav>
+<header th:replace="fragments/header :: header">
 </header>
+
+<h2>EVERYTHING IS ON FIRE! THE WORLD IS ENDING!! RUN FOR YOUR LIFE!</h2>
+<h3>Jk, it's probably fine. But something went wrong.</h3>
+
 </body>
 </html>

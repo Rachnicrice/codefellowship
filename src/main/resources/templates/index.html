@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="">
+<html>
   <head>
-    <title>Code Fellowship</title>
+    <head th:replace="fragments/head :: head">
   </head>
 
   <body>
-    <header>
-      <h1>Welcome to Code Fellowship!</h1>
-  
-      <nav th:replace="fragments/nav :: nav"></nav>
+    <header th:replace="fragments/header :: header">
     </header>
+
+    <h2>Welcome to Code Fellowship!</h2>
+
+    <p>Join the fellowship. Or fear the fellowship.</p>
   </body>
 </html>

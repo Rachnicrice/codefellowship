@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="">
-  <head>
-    <title>Code Fellowship</title>
-  </head>
+<html>
+    <head th:replace="fragments/head :: head">
 
   <body>
-    <h1>Log In to Code Fellowship!</h1>
-    <nav th:replace="fragments/nav :: nav"></nav>
+    <header th:replace="fragments/header :: header">
+
+    </header>
+    <h2>Log In to Code Fellowship!</h2>
 
     <form action="/login" method="POST">
       <label>Username<input name="username"/></label>

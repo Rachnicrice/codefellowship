@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Code Fellowship</title>
+    <head th:replace="fragments/head :: head">
 </head>
 <body>
-    <h1>Code Fellowship Members</h1>
-    <nav th:replace="fragments/nav :: nav"></nav>
+
+<header th:replace="fragments/header :: header"></header>
+    <h2>Code Fellowship Members</h2>
 
     <div th:each="user : ${users}">
         <p th:text="${user.username}"></p>
